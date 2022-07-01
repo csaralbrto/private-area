@@ -1,0 +1,331 @@
+.select {
+    border-radius: 0;
+    border-bottom: 1px solid $white;
+    @include fontSize(17);
+    color: $white;
+
+    .selectize-input {
+        border: none;
+        padding-left: 15px;
+        box-shadow: none;
+        background: transparent;
+        font-family: "roboto", Arial, Helvetica, sans-serif;
+        color: $white !important;
+
+        &::after {
+            border-color: $white transparent transparent !important;
+        }
+
+        &.input-active {
+            color: $lBlack !important;
+        }
+
+        input {
+            font-family: "roboto", Arial, Helvetica, sans-serif;
+            @include fontSize(17);
+            font-weight: normal;
+            color: $white !important;
+            width: 100%!important;
+            position: absolute;
+
+            @include placeholder {
+                @include fontSize(17);
+                font-weight: normal;
+                color: $white !important;
+            }
+        }
+
+        label {
+            display: none !important;
+        }
+
+        &.focus {
+            input {
+                color: $lBlack !important;
+
+                @include placeholder {
+                    color: $lBlack !important;
+                }
+            }
+
+            &+.selectize-dropdown {
+                max-height: 150px !important;
+                border-width: 0 1px 1px 1px;
+            }
+
+            &::after {
+                border-color: $lBlack transparent transparent !important;
+                z-index: +1;
+            }
+        }
+
+        .item {
+            @include fontSize(17);
+        }
+    }
+
+    .selectize-dropdown {
+        display: block !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        border-width: 0;
+        overflow-y: auto !important;
+        color: $lBlack !important;
+        border-radius: 0px 0px 3px 3px;
+        pointer-events: none;
+        opacity: 0;
+
+        @include placeholder {
+            color: $lBlack !important;
+        }
+
+        @include transition;
+
+        .option {
+            padding-left: 15px;
+
+            &.active {
+                background: rgba($orange, .2);
+                color: $lBlack !important;
+            }
+        }
+    }
+
+    &--profile {
+        display: flex !important;
+        border: none;
+        -webkit-appearance: none;
+        border-radius: 0;
+        min-height: 37px;
+
+        .selectize-input {
+            border-bottom: 1px solid $gray;
+            border-radius: 0;
+            color: $gray2 !important;
+
+            &::after {
+                content: "" !important;
+                background: url("../img/icons/pencil-grey.svg") no-repeat center;
+                width: 0px !important;
+                height: 24px !important;
+                border-style: none !important;
+                top: 16% !important;
+                right: 8px !important;
+                border-color: $white transparent transparent !important;
+                // display: none;
+            }
+
+            &.input-active {
+                color: $gray2 !important;
+            }
+
+            input {
+                color: $gray2 !important;
+
+                @include placeholder {
+                    @include fontSize(17);
+                    font-weight: normal;
+                    color: $gray2 !important;
+                }
+            }
+
+            &.focus {
+                input {
+                    color: $gray2 !important;
+
+                    @include placeholder {
+                        color: $gray2 !important;
+                    }
+                }
+
+                &+.selectize-dropdown {
+                    max-height: 150px !important;
+                    border-width: 0 1px 1px 1px;
+                }
+
+                &::after {
+                    border-color: $white transparent transparent !important;
+                    z-index: +1;
+                }
+            }
+
+            .item {
+                @include fontSize(17);
+
+                @media #{$mediaIos4} {
+                    @include fontSize(14);
+                }
+            }
+        }
+
+        .selectize-dropdown {
+            display: block !important;
+            min-height: 0 !important;
+            max-height: 0 !important;
+            border-width: 0;
+            overflow-y: auto !important;
+            color: $lBlack !important;
+            border-radius: 0px 0px 3px 3px;
+            pointer-events: none;
+            opacity: 0;
+            font-family: 'roboto';
+
+            @include placeholder {
+                color: $lBlack !important;
+            }
+
+            @include transition;
+
+            .option {
+                padding-left: 15px;
+
+                &.active {
+                    background: rgba($orange, .2);
+                    color: $lBlack !important;
+                }
+            }
+        }
+        
+    }
+    &--preferProfile {
+        display: flex !important;
+        border: none;
+        -webkit-appearance: none;
+        border-radius: 0;
+        height: 37px;
+
+        .selectize-input {
+            border-bottom: 1px solid $gray;
+            border-radius: 0;
+            color: $gray2 !important;
+
+            // &::after {
+            //     content: "" !important;
+            //     background: url("../img/icons/pencil-grey.svg") no-repeat center;
+            //     width: 24px !important;
+            //     height: 24px !important;
+            //     border-style: none !important;
+            //     top: 16% !important;
+            //     right: 8px !important;
+            //     border-color: $white transparent transparent !important;
+            // }
+
+            &.input-active {
+                color: $gray2 !important;
+            }
+
+            input {
+                color: $gray2 !important;
+
+                @include placeholder {
+                    @include fontSize(17);
+                    font-weight: normal;
+                    color: $gray2 !important;
+                }
+            }
+
+            &.focus {
+                input {
+                    color: $gray2 !important;
+
+                    @include placeholder {
+                        color: $gray2 !important;
+                    }
+                }
+
+                &+.selectize-dropdown {
+                    max-height: 150px !important;
+                    border-width: 0 1px 1px 1px;
+                }
+
+                &::after {
+                    border-color: $white transparent transparent !important;
+                    z-index: +1;
+                }
+            }
+
+            .item {
+                @include fontSize(17);
+
+                @media #{$mediaIos4} {
+                    @include fontSize(14);
+                }
+            }
+        }
+
+        .selectize-dropdown {
+            display: block !important;
+            min-height: 0 !important;
+            max-height: 0 !important;
+            border-width: 0;
+            overflow-y: auto !important;
+            color: $lBlack !important;
+            border-radius: 0px 0px 3px 3px;
+            pointer-events: none;
+            opacity: 0;
+            font-family: 'roboto';
+            top: -35px!important;
+
+            @include placeholder {
+                color: $lBlack !important;
+            }
+
+            @include transition;
+
+            .option {
+                padding-left: 15px;
+
+                &.active {
+                    background: rgba($orange, .2);
+                    color: $lBlack !important;
+                }
+            }
+        }
+        
+    }
+    &--payOff {
+        display: flex !important;
+        border: none;
+        min-height: 37px;
+
+        .selectize-input {
+            border-bottom: 1px solid $gray;
+            border-radius: 0;
+            color: $gray2 !important;
+
+            &::after {
+                border-color: $grayRgba transparent transparent !important;
+            }
+
+            &.input-active {
+                color: $gray2 !important;
+            }
+
+            input {
+                color: $gray2 !important;
+
+                @include placeholder {
+                    @include fontSize(17);
+                    font-weight: normal;
+                    color: $gray2 !important;
+                }
+            }
+        }
+    }
+}
+
+.selectize-control {
+    &.select.select--profile.multi .selectize-input:after {
+        position: absolute;
+    }
+
+    &.multi .selectize-input>div {
+        cursor: pointer;
+        margin: 0 3px 3px 0;
+        padding: 2px 6px;
+        background: #f2f2f2;
+        color: #303030;
+        border: 0 solid #d0d0d0;
+        font-size: 11px;
+    }
+}

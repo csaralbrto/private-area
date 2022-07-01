@@ -1,0 +1,378 @@
+/* HAMBURGER BUTTON */
+
+.hamburgerBtn {
+	display: none;
+	pointer-events: all;
+	@media #{$mqDesktop}{
+		@include flex;
+	}
+	width: $widthBarHam + 8;
+	height: $widthBarHam + 8;
+	@if $acSizeHam {
+		width: $sizeHam;
+		height: $sizeHam;
+	}
+	background: $bgHam;
+	position: relative;
+	cursor: pointer;
+	z-index: 301;
+	overflow: hidden;
+	nav.active & {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+	}
+	&__line {
+		display: block;
+		width: $widthBarHam;
+		@if $acSizeHam {
+			width: 90%;
+		}
+		height: $heightBarHam;
+		background: $colorBarHam;
+		@if $radiusBarHam {
+			border-radius: $radiusBarHam;
+		}
+		@include transition;
+		overflow: hidden;
+		&:first-of-type {
+			transform: translateY((-$spaceBar));
+		}
+		&:last-of-type {
+			transform: translateY($spaceBar);
+		}
+	}
+	&.active {
+		.hamburgerBtn__line {
+			&:first-of-type {
+				transform: translateY($heightBarHam) rotate(-45deg);
+			}
+			&:nth-of-type(2) {
+				opacity: 0;
+			}
+			&:last-of-type {
+				transform: translateY((-$heightBarHam)) rotate(45deg);
+				transition-delay: .1s;
+			}
+		}
+	}
+}
+
+/* BUTTONS */
+
+.btn {
+	@include flex($fw: nowrap, $d:inline-flex);
+	min-width: 165px;
+	height: 50px;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	// border-radius: 3px;
+	border-radius: 5px;
+	padding: 7px 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	outline: none;
+	background: $lPurple;
+	@include fontSize(16);
+	text-align: center;
+	color: $white;
+	cursor: pointer;
+	@include transition;
+	.pagination & {
+		font-family: $semiBold;
+		@include fontSize(14);
+		text-transform: uppercase;
+	}
+	@media #{$hover}{
+		&:hover {
+			border-color: $white;
+			background: transparent;
+		}
+	}
+	&--header {
+		padding: 18px;
+	}
+	&--radius {
+		border-radius: 24px;
+	}
+	&--circle {
+		width: 50px;
+		min-width: unset;
+		border-radius: 50%;
+	}
+	&--circleS {
+		width: 42px;
+		height: 42px;
+		padding: 10px;
+		min-width: unset;
+		border-radius: 50%;
+	}
+	&--iconL {
+		&::before {
+			@include flex;
+			content: "";
+			width: 12px;
+			height: 12px;
+			margin-right: 10px;
+			background: $lGray;
+		}
+		&.btn--shop {
+			&::before {
+				width: 18px;
+				height: 18px;
+				background: url("../images/icons/shop.svg") no-repeat center;
+				background-size: contain;
+			}
+		}
+	}
+	&--iconR {
+		&::after {
+			@include flex;
+			content: "";
+			width: 12px;
+			height: 12px;
+			margin-left: 10px;
+			background: $lGray;
+		}
+		&.btn--iMap {
+			&::after {
+				width: 22px;
+				height: 21px;
+				margin-left: 15px;
+				background: url("../images/icons/map.svg") no-repeat center;
+				background-size: contain;
+			}
+		}
+		&.btn--iSV {
+			&::after {
+				width: 22px;
+				height: 21px;
+				margin-left: 15px;
+				background: url("../images/icons/street-view.svg") no-repeat center;
+				background-size: contain;
+			}
+		}
+	}
+	&--arrow {
+		&.btn--iconL {
+			&::before {
+				width: 15px;
+				height: 10px;
+				background: url("../images/icons/arrow.svg") no-repeat center;
+				transform: rotate3d(0,0,1,90deg);
+			}
+		}
+		&.btn--iconR {
+			&::after {
+				width: 15px;
+				height: 10px;
+				background: url("../images/icons/arrow.svg") no-repeat center;
+				transform: rotate3d(0,0,1,-90deg);
+			}
+		}
+	}
+	&--line {
+		border-color: $red;
+		background: transparent;
+		color: $red;
+		@media #{$hover}{
+			&:hover {
+				background: $red;
+				color: $white;
+			}
+		}
+	}
+	&--linePurple {
+		border-color: $lPurple;
+		background: transparent;
+		color: $lPurple;
+		@media #{$hover}{
+			&:hover {
+				background: $lPurple;
+				color: $white;
+			}
+		}
+	}
+	&--gmail {
+		background: $gmail;
+		@media #{$hover}{
+			&:hover {
+				border-color: $gmail;
+				color: $gmail;
+			}
+		}
+	}
+	&--noMinW {
+		min-width: auto;
+	}
+	&--facebook {
+		background: $facebook;
+		@media #{$hover}{
+			&:hover {
+				border-color: $facebook;
+				color: $facebook;
+			}
+		}
+	}
+	&--whatsapp {
+		background: $whatsapp;
+		@media #{$hover}{
+			&:hover {
+				border-color: $whatsapp;
+				color: $whatsapp;
+			}
+		}
+	}
+	&--gray {
+		background: $shadow;
+	}
+	&--lPurple {
+		background: $lPurple;
+	}
+	&--lime {
+		background: $lime;
+    }
+    &--yellow {
+        background: $yellow;
+    }
+	&--square {
+		width: 50px;
+		min-width: 50px;
+		height: 50px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	&--gradient {
+		border: none;
+		background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) left center;
+		background-size: 200% auto;
+		@include transition;
+		@media #{$hover}{
+			&:hover {
+				background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) right center;
+				background-size: 200% auto;
+			}
+		}
+	}
+	&--shadow {
+		box-shadow: 0 0 7px rgba($black,.25);
+		@media #{$hover}{
+			&:hover {
+				box-shadow: 0 0 5px rgba($black,.35);
+			}
+		}
+	}
+	&--noLimit {
+		width: 100%;
+		min-width: unset;
+	}
+	&--message {
+		&.btn--iconL {
+			&::before {
+				background: url("../images/icons/message.svg") no-repeat center;
+			}
+		}
+		&.btn--iconR {
+			&::after {
+				background: url("../images/icons/message.svg") no-repeat center;
+			}
+		}
+	}
+	&--hoverLPurple {
+		@media #{$hover}{
+			&:hover {
+				border-color: $lPurple;
+				color: $lPurple;
+			}
+		}
+		@media #{$mqXMobile}{
+			font-size: 13px;
+    		min-width: auto;
+		}
+	}
+	&--hoverLime {
+		@media #{$hover}{
+			&:hover {
+				border-color: $lime;
+				color: $lime;
+			}
+		}
+	}
+	.pagination & {
+		@media #{$mqMobile}{
+			min-width: 140px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		@media #{$mqXMobile}{
+			min-width: 48px;
+			@include fontSize(0);
+		}
+		@media #{$hover}{
+			&:hover {
+				background: $purple;
+			}
+		}
+	}
+	.footer__bottom & {
+		min-width: 260px;
+		margin-left: auto;
+		@media #{$mqDesktop}{
+			margin-left: 0;
+		}
+		&::before, &::after {
+			width: 22px;
+			height: 22px;
+        }
+    }
+    .carousel--broken & {
+		padding-top: 9px;
+		@media #{$hover}{
+			&:hover {
+				// border-color: $yellow;
+				// color: $yellow;
+				border-color: $lPurple;
+				color: $lPurple;
+			}
+		}
+	}
+	.modal--logIn .form--logIn &, .modal--logPublish .form--logIn & {
+		@media #{$hover}{
+			&:hover {
+				border-color: $lPurple;
+				color: $lPurple;
+			}
+		}
+	}
+	.card--square & {
+		min-width: auto;
+		height: auto;
+	}
+	.form--subscription &, .form--noHover & {
+		@media #{$hover}{
+			&:hover {
+				border-color: $lPurple;
+				background: $white;
+				color: $lPurple;
+			}
+		}
+	}
+	&.compareBox__item__btn {
+		@media #{$mqMobile}{
+			min-width: initial;
+			padding: 7px 15px;
+		}
+	}
+	.form--listing & {
+		@media #{$hover}{
+			&:hover {
+				border-color: $lPurple;
+				background: $lPurple;
+				color: $white;
+			}
+		}
+	}
+	.modal--share & {
+		margin: 5px;
+	}
+}

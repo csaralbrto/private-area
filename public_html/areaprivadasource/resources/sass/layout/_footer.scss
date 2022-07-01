@@ -1,0 +1,106 @@
+/* FOOTER */
+
+.footer {
+    width: 100%;
+    background: url("../images/bg/Menuinferiormorado.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+    &__top {
+        padding-top: 60px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba($xxlGray,.2);
+        .footer__container {
+            @include flex(space-between,flex-start);
+        }
+    }
+    &__medium {
+        min-height: 85px;
+        border-bottom: 1px solid rgba($xxlGray,.2);
+    }
+    &__bottom {
+        min-height: 50px;
+    }
+    &__container {
+        @include flex(flex-start);
+        min-height: inherit;
+        height: 100%;
+        .footer__bottom & {
+            @include flex($fw:nowrap);
+            @media #{$mqDesktop}{
+                @include flex;
+                padding-bottom: 20px;
+                p {
+                    text-align: center;
+                }
+            }
+        }
+    }
+    &__box {
+        @include flex(flex-start);
+        width: 50%;
+        &--right {
+            @include flex(flex-end);
+        }
+        .footer__medium & {
+            @media #{$mqMobile}{
+                @include flex;
+                width: 100%;
+                &:first-of-type {
+                    margin-bottom: 10px;
+                }
+                span {
+                    text-align: center;
+                }
+            }
+        }
+        .footer__bottom & {
+            width: 100%;
+        }
+    }
+    &__list {
+        width: 100%;
+        max-width: 200px;
+        @media #{$mqMobile}{
+            width: 50%;
+            max-width: unset;
+            padding-right: 10px;
+            margin-bottom: 35px;
+            &:nth-of-type(n+3){
+                margin-bottom: 0;
+            }
+        }
+        @media #{$mqXMobile}{
+            width: 100%;
+            padding-right: 0;
+            margin-bottom: 35px;
+            &:nth-of-type(n+3){
+                margin-bottom: 35px;
+            }
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        &__item {
+            margin-bottom: 20px;
+            @media #{$mqMobile}{
+                margin-bottom: 15px;
+            }
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+            &--title {
+                font-family: $semiBold;
+                @include fontSize(16);
+                color: $white;
+                text-transform: uppercase;
+            }
+        }
+        &__link {
+            @include fontSize(16);
+            color: $white;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

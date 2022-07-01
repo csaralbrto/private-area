@@ -1,0 +1,188 @@
+/* MODAL */
+
+.modal {
+	@include flex;
+	// display: none !important;
+	width: 100vw;
+	height: 100vh;
+	background: $bgModal;
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include transition;
+	z-index: 2000;
+	&__container {
+		@include flex;
+		width: 100%;
+		max-width: $maxWModal;
+		height: auto;
+		min-height: $minHModal;
+		max-height: $maxHModal;
+		// border-radius: 10px;
+		padding: 10px;
+		padding-top: 40px;
+		@include fontSize(15);
+		text-align: center;
+		background: $white;
+		position: relative;
+	}
+	&__content {
+		height: 400px;
+		overflow-y: auto;
+	}
+	&__title {
+		width: 100%;
+	}
+	&__close {
+		@include flex;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		cursor: pointer;
+		&::before {
+			@include flex;
+			content: "×";
+			width: 100%;
+			height: 100%;
+			@include fontSize(40);
+		}
+	}
+	&--playV {
+		.modal__container {
+			width: 98%;
+			max-width: 700px;
+			min-height: initial;
+			max-height: initial;			
+		}
+		.modal__content {
+			width: 100%;
+			height: auto;
+			@include aspectRatio(16,9);
+		}
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.g-recaptcha {
+		&, div, iframe {
+			width: 100% !important;
+		}
+	}
+	&--logIn, &--info {
+		.modal__container {
+			@include flex($ai:flex-start);
+			width: calc(100% - 40px);
+			min-height: 250px;
+			height: auto;
+			max-height: calc(100vh - 40px);
+			padding: 40px 20px 20px 20px;
+			overflow-y: auto;
+		}
+		.modal__content {
+			height: auto;
+			@media #{$mqXMobile}{
+				width: 100%;
+				overflow: hidden;
+			}
+		}
+		.modal__box {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+		// @media #{$mqXMobile}{
+		// 	@media #{$safari}{
+		// 		.modal__content {
+		// 			overflow: initial;
+		// 		}
+		// 	}
+		// }
+		@media #{$mqXMobile}{
+			@media #{$safari2}{
+				.modal__content {
+					width: 100%;
+					overflow: hidden;
+				}
+			}
+		}
+	}
+	&--logPublish {
+		.modal__container {
+			@include flex($ai:flex-start);
+			width: calc(100% - 40px);
+			min-height: 250px;
+			padding: 20px;
+			height: auto;
+			max-height: calc(100vh - 40px);
+			overflow-y: auto;
+		}
+		.modal__content {
+			@include flex;
+			width: 100%;
+			height: auto;
+		}
+		.modal__section {
+			width: 100%;
+		}
+		// @media #{$mqXMobile}{
+			// 	@media #{$safari}{
+		// 		.modal__content {
+			// 			overflow: initial;
+		// 		}
+		// 	}
+		// }
+		@media #{$mqXMobile}{
+			@media #{$safari2}{
+				.modal__content {
+					overflow: initial;
+				}
+			}
+		}
+	}
+	&--share, &--little {
+		.modal__container {
+			width: calc(100% - 40px);
+			min-height: 120px;
+			max-width: 400px;
+			padding-bottom: 30px;
+		}
+		.modal__content {
+			@include flex;
+			height: auto;
+		}
+	}
+	&--empty{
+		.modal__container {
+			@include flex($ai:flex-start);
+			width: calc(100% - 20px);
+			max-width: 900px;
+			height: auto;
+			max-height: calc(100vh - 40px);
+			padding: 20px;
+			overflow-y: auto;
+		}
+		.modal__content {
+			@include flex($ai:flex-start);
+			height: auto;
+		}
+		.modal__mini {
+			width: 50%;
+			padding: 0 10px;
+			@media #{$mqMobile}{
+				width: 100%;
+				padding: 0;
+			}
+		}
+	}
+}
+
+// SAFARI SUPPORT
+@media not all and (min-resolution:.001dpcm) { 
+	.modal.hide {
+		z-index: 1000;
+	}
+}

@@ -1,0 +1,2354 @@
+/* BOXES */
+
+.video-publicidad-PN{
+    display: flex;
+   -webkit-box-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   align-items: center;
+   align-content: center;
+   flex-wrap: wrap;
+   width: -webkit-fill-available;
+   height: -webkit-fill-available;
+   background: rgba(0, 0, 0, 0.5);
+   position: fixed;
+   top: 0;
+   left: 0;
+   overscroll-behavior-y: none;
+   -webkit-transition: all 0.3s ease;
+   transition: all 0.3s ease;
+   z-index: 2000;
+}
+.bgW-videp-PN{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.btn--lineGrey{
+   border-color: grey;
+   background: transparent;
+   color: grey;
+}
+
+/* Boton flotante */
+.btn-flotante {
+    display: block;
+    height: auto;
+    position: fixed;
+    z-index: 999;
+    left: 10px;
+    width: 100%;
+    max-width: 180px;
+    bottom: 20px;
+    @media #{$mqXMobile}{
+        max-width: 120px;
+        bottom: 50px;
+    }
+}
+.close-flotante{
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    line-height: 1;
+    top: 0;
+    color: #8C979A;
+}
+.img-containt{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.img-flotante-popup{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.waves {
+    user-select: none;
+    overflow: hidden;
+}
+
+.wave {
+    display: block;
+    border-radius: 50%;
+    background: rgba($lBlack,.25);
+    position: absolute;
+    opacity: 1;
+    transform: scale(0);
+    pointer-events: none;
+    @include transition($time:1, $timing: ease-out);
+}
+
+// LISTING
+
+.listing {
+    width: 100%;
+    &__top {
+        width: 100%;
+        border-bottom: 1px solid rgba($lGray,.5);
+        &__container {
+            @include flex(flex-start);
+            width: 100%;
+            max-width: 1300px;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            @media #{$mqDesktop}{
+                @include flex;
+                .text {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+                .btn {
+                    margin-left: 5px !important;
+                    margin-right: 5px !important;
+                    margin-bottom: 5px;
+                    // &.mlA {
+                    //     margin-left: 0;
+                    // }
+                }
+            }
+        }
+    }
+    &__bottom {
+        position: relative;
+        &::before {
+            display: none;
+            content: "";
+            width: 0;
+            height: 100%;
+            background: $shadow;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            @include transition;
+            z-index: +2;
+        }
+        &.open {
+            &::before {
+                // width: calc(calc(calc(100vw - 1296px) / 2) + 1296px / 3);
+                // width: calc(calc(calc(100vw - 1296px) / 2) + 1280px / 3);
+                width: calc(calc(calc(100vw - 1260px) / 2) + 1280px / 3 - 9px);
+                opacity: 1;
+                @media #{$mqDesktop}{
+                    opacity: 0;
+                }
+            }
+            .listing__filters {
+                // width: 33.33%;
+                width: calc(33.33% - 27px);
+                padding-right: 20px;
+                opacity: 1;
+                pointer-events: all;
+                @media #{$mqDesktop}{
+                    width: 100%;
+                    padding-right: 20px;
+                    max-width: 350px;
+                }
+            }
+            // .listing__content {
+                // width: 66.66%;
+                // padding-left: 40px;
+                // @media #{$mqDesktop}{
+                //     width: 100%;
+                //     padding-left: 20px;
+                // }
+            // }
+        }
+    }
+    &__curtain {
+        display: block;
+        width: 100%;
+        background: rgba($black,0);
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include transition;
+        z-index: +2;
+        .listing__bottom.open & {
+            background: rgba($black,.5);
+            pointer-events: all;
+        }
+    }
+    &__container {
+        @include flex(flex-end,stretch);
+        position: relative;
+        // &.open {
+            // .listing__content {
+            //     width: 67%;
+            // }
+        // }
+    }
+    &__filters {
+        width: 0;
+        // height: 100%;
+        padding-top: 20px;
+        padding-right: 20px;
+        // padding-right: 0;
+        padding-bottom: 20px;
+        border-radius: 0 0 10px 0;
+        // margin-right: auto;
+        // background: $shadow;
+        background: $xxlGray;
+        box-shadow: 0 0 0 rgba($black,.2);
+        position: absolute;
+        top: 0;
+        left: 20px;
+        opacity: 0;
+        transform: translateZ(0);
+        @include transition;
+        // overflow: hidden;
+        pointer-events: none;
+        will-change: width;
+        z-index: +2;
+        &::before {
+            content: "";
+            display: block;
+            width: 100vw;
+            height: 100%;
+            background: $xxlGray;
+            position: absolute;
+            top: 0;
+            left: -100vw;
+        }
+        @media #{$mqDesktop}{
+            width: 100%;
+            max-width: 0;
+            padding: 20px;
+            // position: absolute;
+            // top: 0;
+            left: 0;
+        }
+    }
+    &__content {
+        @include flex(flex-start,flex-start);
+        // width: calc(100% + 20px);
+        // margin-right: -20px;
+        width: 100%;
+        padding-top: 45px;
+        // transform: translateZ(0);
+        @include transition;
+        will-change: width;
+        .listing--map & {
+            @include flex(flex-start,stretch);
+        }
+    }
+    &__left {
+        width: 350px;
+        padding-right: 10px;
+        @media #{$mqMobile}{
+            order: 0;
+            width: 100%;
+            padding-top: 20px;
+            padding-right: 0;
+        }
+    }
+    &__right {
+        width: calc(100% - 350px);
+        padding-left: 10px;
+        @media #{$mqMobile}{
+            order: -1;
+            width: 100%;
+            padding-left: 0;
+        }
+    }
+    &__map {
+        width: 100%;
+        height: 650px;
+        background: $lGray;
+        position: sticky !important;
+        top: 80px;
+        left: 0;
+        @media #{$mqMobile}{
+            height: 400px;
+        }
+    }
+    &__items {
+        @include flex(flex-start,flex-start);
+        width: calc(100% + 20px);
+        margin-right: -20px;
+    }
+}
+
+// PROFILE BOX
+
+.profileBox {
+    &__iScales {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin: 0 2px -2px;
+        background: url("../images/icons/compare--p.svg") no-repeat center;
+        background-size: contain;
+    }
+    &__marker {
+        line-height: 1;
+    }
+    &__top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba($lGray,.5);
+    }
+    &__container {
+        @include flex;
+        @media #{$mqDesktop}{
+            @include flex($ai:flex-start);
+        }
+    }
+    &__userPic {
+        @include flex;
+        width: 120px;
+        min-width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-left: auto;
+        line-height: 0;
+        overflow: hidden;
+        &--sRadius {
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media #{$mqSTablet}{
+            margin-right: auto;
+        }
+        &__img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            &[src=""], &[src="_"] {
+                background-color: $xxlGray2;
+                background-image: url(../images/icons/user.svg);
+                background-position: center;
+                background-size: 70px;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+    &__left {
+        width: 300px;
+        position: relative;
+        padding-left: 35px;
+        @media #{$mqSLaptop}{
+            width: 200px;
+        }
+        @media #{$mqDesktop}{
+            width: 300px;
+        }
+        .profileBox__top & {
+            @include flex(flex-start, flex-end);
+            @media #{$mqDesktop}{
+                padding-top: 13px;
+            }
+            @media #{$mqMobile}{
+                width: 100%;
+            }
+        }
+        .profileBox__bottom & {
+            @include flex(flex-start,flex-start);
+            width: 120px;
+            padding-left: 0;
+            margin-left: auto;
+            @media #{$mqSTablet}{
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+    &__right {
+        width: calc(100% - 300px);
+        @media #{$mqSLaptop}{
+            width: calc(100% - 200px);
+        }
+        @media #{$mqDesktop}{
+            width: calc(100% - 300px);
+        }
+        .profileBox__top & {
+            @media #{$mqMobile}{
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+        .profileBox__bottom & {
+            @include flex(flex-start,flex-start);
+            width: 100%;
+            max-width: 700px;
+            margin-left: 20px;
+            margin-right: auto;
+            @media #{$mqSTablet}{
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+    &__icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        object-fit: contain;
+        position: absolute;
+        left: 0;
+    }
+    &__content {
+        @include flex($ai:flex-start);
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    &__selects {
+        @media #{$mqMobile}{
+            width: calc(100% - 10px);
+            margin-left: -10px;
+        }
+        @media #{$mqXMobile}{
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+    &__nav {
+        @include flex(flex-end);
+        width: 100%;
+        &__item {
+            @include flex($fw: nowrap, $d:inline-flex);
+            // min-width: 165px;
+            min-width: 100px;
+            height: 50px;
+            vertical-align: middle;
+            border: none;
+            border-radius: 5px;
+            padding: 7px 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            margin-left: 10px;
+            outline: none;
+            background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) left center;
+            background-size: 200% auto;
+            box-shadow: 0 0 7px rgba($black,.25);
+            @include fontSize(16);
+            text-align: center;
+            text-transform: uppercase;
+            color: $white;
+            cursor: pointer;
+            @include transition;
+            &:first-of-type {
+                margin-left: 0;
+            }
+            &.active {
+                background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) right center; 
+                background-size: 200% auto;
+                box-shadow: 0 0 5px rgba($black,.35);
+            }
+            @media #{$hover}{
+                &:hover{
+                    background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) right center; 
+                    background-size: 200% auto;
+                    box-shadow: 0 0 5px rgba($black,.35);
+                }
+            }
+        }
+        @media #{$mqLaptop}{
+            margin-left: 8px;
+        }
+        @media #{$mqSLaptop}{
+            margin-left: 7px;
+        }
+        @media #{$mqDesktop}{
+            @include flex($ai:flex-start);
+            width: 100%;
+            max-width: 400px;
+            max-height: 50px;
+            margin-left: auto;
+            position: relative;
+            overflow: hidden;
+            @include transition($timing:ease-in-out);
+            &::before, &::after {
+                display: block;
+                content: "";
+                width: 15px;
+                height: 15px;
+                background: url("../images/icons/arrow.svg") no-repeat center;
+                background-size: contain;
+                position: absolute;
+                top: 17.5px;
+                left: 10px;
+                @include transition;
+                z-index: +1;
+            }
+            &::after {
+                left: initial;
+                right: 10px;
+            }
+            &.open {
+                max-height: 600px;
+                &::before {
+                    transform: rotate(180deg);
+                }
+                &::after {
+                    transform: rotate(-180deg);
+                }
+            }
+            &__item {
+                order: 1;
+                width: 100%;
+                padding-left: 35px;
+                padding-right: 35px;
+                margin-left: 0;
+                margin-bottom: 5px;
+                position: relative;
+                &.active {
+                    order: 0;
+                }
+            }
+        }
+        @media #{$mqMobile}{
+            margin-right: auto;
+        }
+    }
+}
+
+// PICTURE
+
+%btnPlay {
+    &[data-modal="video"]{
+        position: relative;
+        &::before {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            background: url("../images/icons/play.svg") no-repeat center;
+            background-size: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .85;
+            @include transition;
+            z-index: +1;
+            @media #{$mqMobile}{
+                width: 50px;
+                height: 50px;
+            }
+        }
+        &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: rgba($black,.25);
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        @media #{$hover}{
+            &:hover{
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.picture {
+    display: block;
+    line-height: 0;
+    &--radius {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    &--radius5 {
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    @extend %btnPlay;
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// VIDEO BOX
+
+.videoBox {
+    @include flex(space-between);
+    @media #{$mqMobile}{
+        @include flex;
+    }
+    &__picture {
+        width: 49%;
+        // line-height: 1;
+        line-height: 0;
+        margin-bottom: 20px;
+        cursor: pointer;
+        height: 150px; 
+        @media #{$mqMobile}{
+            width: 100%;
+            // max-width: 450px;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @extend %btnPlay;
+    }
+}
+
+// HEART
+
+.heart {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: +2;
+    &__stroke, &__bg {
+        path {
+            fill: $white;
+            @include transition;
+        }
+    }
+    &__bg {
+        path {
+            opacity: 0;
+        }
+    }
+    &.active {
+        animation: respite .5s ease;
+        .heart__bg {
+            path {
+                opacity: 1;
+            }
+        }
+    }
+    &--lPurple {
+        .heart__stroke, .heart__bg {
+            path {
+                fill: $lPurple;
+            }
+        }
+    }
+}
+
+// MAP
+
+.map {
+    @include flex(flex-start,$fw:nowrap);
+    @media #{$mqMobile}{
+        @include flex(flex-start,$fw:wrap);
+    }
+    &__left {
+        width: 165px;
+        padding-right: 20px;
+        @media #{$mqMobile}{
+            @include flex;
+            width: 100%;
+            padding-right: 0;
+        }
+    }
+    &__right {
+        width: 100%;
+        padding-left: 20px;
+        @media #{$mqMobile}{
+            width: 100%;
+            padding-left: 0;
+        }
+    }
+    &__img {
+        width: 100%;
+        max-width: 145px;
+        @media #{$mqMobile}{
+            max-width: 120px;
+        }
+        @media #{$mqXMobile}{
+            max-width: 70px;
+        }
+    }
+    &__content {
+        min-height: 320px;
+        border-radius: 5px;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+}
+
+// BOX ICONS
+
+.boxIcons {
+    // @include flex(space-between);
+    @include flex(flex-start);
+    width: 100%;
+    border-radius: 14px;
+    padding: 25px 20px;
+    box-shadow: 2px 2px 5px rgba($black,.35);
+    &__item {
+        @include flex(flex-start,$d:inline-flex);
+        // width: calc(33.33% - 10px);
+        width: 33.33%;
+        padding-right: 10px;
+        margin-top: 25px;
+        text-align: left;
+        // &:nth-of-type(n){
+        //     width: 28%;
+        // }
+        // &:nth-of-type(3n+1){
+        //     width: 40%;
+        // }
+        &__icon {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            @media #{$mqMobile2} {
+                width: 25px;
+                height: 25px;
+            }
+        }
+        &__left {
+            margin-right: 20px;
+        }
+        &__right {
+            width: calc(100% - 65px);
+        }
+        &__text {
+            font-family: $regular;
+            @include fontSize(16);
+            color: $lGray;
+            @media #{$mqMobile2} {
+                @include fontSize(14);
+            }
+        }
+        @media #{$mqMobile2} {
+            &:nth-of-type(n) {
+                width: 50%;
+            }
+        }
+        @media #{$mqXMobile} {
+            &:nth-of-type(n) {
+                width: 100%;
+                padding-right: 0;
+            }
+        }
+    }
+    &--black {
+        .boxIcons__item__text {
+            // color: $black;
+        }
+    }
+    &--4 {
+        @include flex(flex-start);
+        .boxIcons__item {
+            &:nth-of-type(n){
+                width: 24%;
+                margin-right: 1.33%;
+            }
+            &:nth-of-type(4n+4){
+                margin-right: 0;
+            }
+            &__icon {
+                width: 25px;
+                height: 25px;
+            }
+            @media #{$mqMobile2} {
+                &:nth-of-type(n) {
+                    width: calc(50% - 10px);
+                    margin-right: 10px;
+                }
+            }
+            @media #{$mqXMobile} {
+                &:nth-of-type(n) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &--normal {
+        @include flex;
+        max-width: 1000px;
+        margin: auto;
+        padding: 0;
+        box-shadow: none;
+        .boxIcons__item {
+            @include flex;
+            padding: 10px;
+            margin-top: 20px;
+            margin: auto;
+            &:nth-of-type(n) {
+                width: 150px;
+            }
+            &__icon {
+                width: 70px;
+                height: 70px;
+            }
+            &__text {
+                width: 100%;
+                margin-top: 10px;
+                text-align: center;
+                text-transform: uppercase;
+                color: $dBlue;
+            }
+        }
+    }
+}
+
+// LINES
+
+.line {
+    &--bottom {
+        border-bottom: 1px solid rgba($lGray,.5);
+    }
+}
+
+// GALLERY BOX
+
+.galleryBox {
+    @include flex(space-between);
+    @media #{$mqMobile}{
+        width: calc(100% + 20px);
+        margin-right: -20px;
+    }
+    &__item {
+        @include flex;
+        width: 32%;
+        height: 300px;
+        overflow: hidden;
+        &--middle {
+            @include flex($ai:space-between);
+            .galleryBox__picture {
+                height: 142px;
+            }
+            @media #{$mqMobile2}{
+                .galleryBox__picture {
+                    height: auto;
+                    margin-bottom: 20px;
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+        @media #{$mqMobile}{
+            width: calc(50% - 20px);
+            height: auto;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        @media #{$mqMobile2}{
+            width: calc(100% - 20px);
+        }
+    }
+    &__picture {
+        width: 100%;
+        height: inherit;
+        cursor: pointer;
+        line-height: 0;
+        position: relative;
+        @extend %watermark;
+        @media #{$mqMobile}{
+            min-height: 100px;
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            @media #{$mqMobile}{
+                min-height: inherit;
+            }
+            &[src=""], &[src="_"]{
+                background-color: rgba($black,.1);
+                background-image: url("../images/logo.png");
+                background-repeat: no-repeat;
+                background-size: 80px;
+                background-position: center;
+            }
+        }
+    }
+    &--v2 {
+        .galleryBox__item {
+            width: calc(50% - 10px);
+            height: 400px;
+            @media #{$mqMobile}{
+                width: calc(100% - 20px);
+                height: auto;
+            }
+            &--middle {
+                .galleryBox__picture {
+                    height: 190px;
+                }
+            }
+            .galleryBox__picture {
+                @media #{$mqMobile}{
+                    height: 200px;
+                }
+            }
+            &:nth-of-type(odd){
+                margin-right: 10px;
+            }
+            &:nth-of-type(even){
+                margin-left: 10px;
+            }
+            @media #{$mqMobile}{
+                &:nth-of-type(n){
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    &--complete {
+        width: 100%;
+        .galleryBox__item {
+            width: 100%;
+            margin-bottom: 20px;
+            @media #{$mqMobile}{
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+// ICON TITLE
+
+.iconTitle {
+    &::before {
+        display: inline-block;
+        content: "";
+        width: 57px;
+        height: 27px;
+        margin-right: 15px;
+        background: url("../images/icons/roof.svg") no-repeat center;
+        background-size: contain;
+        // position: relative;
+        // top: 0;
+        // left: -15px;
+        @media #{$mqMobile}{
+            width: 35px;
+        }
+    }
+}
+
+
+// LIGTHBOX
+
+.lightboxOverlay {
+    position: fixed;
+}
+.lightbox {
+    @include flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0 !important;
+    left: 0px;
+    pointer-events: none;
+    .lb-outerContainer {
+        @include flex;
+        width: 100% !important;
+        height: 153px;
+        background: transparent;
+        position: relative;
+    }
+    .lb-container {
+        pointer-events: all;
+    }
+    .lb-nav {
+        pointer-events: none;
+    }
+    .lb-prev, .lb-next {
+        display: block !important;
+        width: 50px !important;
+        height: 50px !important;
+        margin: auto;
+        background: url("../../images/icons/prev.png") !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: .5 !important;
+        pointer-events: all;
+        @media #{$hover}{
+            &:hover{
+                opacity: 1 !important;
+            }
+        }
+    }
+    .lb-next {
+        background: url("../../images/icons/next.png") !important;
+        left: unset;
+        right: 0;
+    }
+}
+
+// ANOTHER LIGHTBOX
+.sl-overlay {
+    background: rgba($black,.7);
+    opacity: 1;
+    z-index: 1500;
+}
+
+.sl-wrapper {
+    @include flex;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1600;
+}
+
+.sl-wrapper .sl-image {
+    position: static !important;
+    &::before {
+        display: block;
+        content: "";
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        background: url(../images/icons/watermark.svg) no-repeat center;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.35;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+}
+
+.sl-wrapper .sl-close, .sl-wrapper .sl-counter, .sl-wrapper .sl-navigation button {
+    color: $white;
+}
+
+.sl-wrapper .sl-counter {
+    order: 1;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    position: static !important;
+    z-index: 1600;
+}
+
+// CONFIG BOX
+
+.configBox, .shopBox {
+    width: 100%;
+    height: auto;
+    &__header {
+        padding: 15px 40px;
+        background: $xdPurple;
+        @media #{$mqMobile}{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+    &__body, &__footer {
+        padding: 15px 40px;
+        background: $xxlGray3;
+        @media #{$mqMobile}{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+    &__item {
+        @include flex;
+        border-bottom: 1px solid $purple ;
+        padding-bottom: 30px;
+        &__box {
+            @include flex;
+            width: 100%;
+            &--50 {
+                width: 50%;
+                &:nth-of-type(odd){
+                    padding-right: 20px;
+                }
+                &:nth-of-type(even){
+                    padding-left: 20px;
+                }
+                @media #{$mqMobile}{
+                    width: 100%;
+                    &:nth-of-type(n){
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+        &__subtitle {
+            font-family: $semiBold;
+            @include fontSize(15);
+            color: $shadow;
+            @media #{$mqMobile}{
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 8px;
+            }
+        }
+        &__remove, &__buy {
+            margin-left: auto;
+            @media #{$mqMobile}{
+                margin-right: auto;
+            }
+        }
+        &__add {
+            margin-right: auto;
+            @media #{$mqMobile}{
+                margin-left: auto;
+            }
+        }
+        &__left {
+            @include flex(flex-start);
+            width: calc(35% + 10px);
+            padding-right: 10px;
+            @media #{$mqMobile}{
+                width: 100%;
+                padding-right: 0;
+            }
+            .configBox__footer & {
+                @media #{$mqMobile}{
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        &__right {
+            @include flex(flex-start);
+            width: calc(65% - 10px);
+            @media #{$mqMobile}{
+                @include flex;
+                width: 100%;
+            }
+        }
+    }
+}
+
+// SHOP BOX
+.shopBox {
+    &__header {
+        padding: 20px;
+        background: linear-gradient(to top, $xdPurple, $dPurple);
+        .shopBox__item {
+            padding: 0;
+            border: none;
+            &__subtitle {
+                text-align: left;
+                text-transform: uppercase;
+                color: $white;
+            }
+        }
+    }
+    &__body, &__footer {
+        padding: 20px;
+    }
+    &__footer {
+        &__top, &__bottom {
+            .shopBox__item {
+                border-bottom: none;
+            }
+            .shopBox__item__box {
+                &:nth-of-type(1){
+                    @include flex(flex-start);
+                    max-width: 50%;
+                    .shopBox__item__subtitle {
+                        @include flex;
+                        width: auto;
+                        height: 41px;
+                        padding: 0 30px;
+                        background: $lPurple;
+                        color: $white;
+                    }
+                }
+                &:nth-of-type(2){
+                    margin-left: auto;
+                    margin-right: 42px;
+                }
+            }
+        }
+        &__bottom {
+            .shopBox__item__box {
+                width: 100%;
+                &:nth-of-type(1){
+                    max-width: 40%;
+                }
+                &:nth-of-type(2){
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    &__item {
+        @include flex(flex-start);
+        padding: 20px 0;
+        margin-top: 20px;
+        &:first-of-type {
+            margin-top: 0;
+        }
+        @media #{$mqMobile}{
+            margin-top: 20px;
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
+        &__box {
+            @include flex;
+            max-width: calc(calc(100% - 42px) / 4);
+            padding-left: 10px;
+            padding-right: 10px;
+            &:nth-of-type(5) {
+                width: 42px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .form__box {
+                @include flex;
+            }
+        }
+        &__subtitle {
+            width: 100%;
+            text-align: left;
+            &.bold {
+                font-family: "montserratBold", arial, sans-serif;
+            }
+        }
+    }
+}
+
+// SHOPPING KART
+.shoppingBox {
+    @include flex($ai:flex-start);
+    width: 100%;
+    &__left {
+        width: calc(100% - 320px);
+        margin-right: 20px;
+        @media #{$mqMobile}{
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+    &__right {
+        width: 300px;
+        padding: 20px;
+        background: $xxlGray3;
+        @media #{$mqMobile}{
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+    &__item {
+        @include flex(flex-start);
+        width: 100%;
+        background: $xxlGray3;
+        border-bottom: 1px solid $purple;
+        margin-bottom: 20px;
+        position: relative;
+        @media #{$mqXMobile}{
+            padding: 10px 20px;
+        }
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        &__subtitle {
+            width: 100%;
+            text-align: left;
+            color: $shadow;
+        }
+        &__box {
+            @include flex(flex-start);
+            width: calc(calc(100% - 90px) / 3);
+            padding: 20px;
+            &:last-of-type {
+                @include flex;
+                width: 90px;
+            }
+            @media #{$mqXMobile}{
+                // width: 100%;
+                width: calc(100% - 46px);
+                padding: 0;
+                padding-top: 10px;
+                &:first-of-type {
+                    .shoppingBox__item__subtitle {
+                        padding-right: 20px;
+                    }
+                }
+                &:nth-of-type(n+2) {
+                    // width: 50%;
+                    width: calc(100% - 46px);
+                    .form__input {
+                        max-width: unset;
+                    }
+                }
+                &:last-of-type {
+                    width: 46px;
+                    padding: 0;
+                    margin: auto;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 10px;
+                }
+            }
+            &.center {
+                @include flex;
+            }
+        }
+        &__coupon {
+            @include flex(flex-start,$fw:nowrap);
+            width: 100%;
+            .shoppingBox__item__subtitle {
+                @include flex;
+                width: auto;
+                height: 41px;
+                padding: 0 15px;
+                background: $lPurple;
+                color: $white;
+            }
+            .form__input {
+                width: 100%;
+                max-width: 170px;
+            }
+        }
+        &__remove {
+            position: relative;
+            color: transparent !important;
+            &::before {
+                display: block;
+                content: "";
+                width: 20px;
+                height: 20px;
+                margin: auto;
+                background: url("../images/icons/trash.svg") no-repeat center;
+                background-size: contain;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
+}
+
+// PLAN BOX
+
+.planBox {
+    width: 100%;
+    &__container {
+        @include flex($ai:stretch);
+        width: 100%;
+        margin-top: 20px;
+        &--multiple {
+            width: calc(100% + 20px);
+            margin-right: -20px;
+        }
+        &--v2 {
+            width: calc(100% + 20px);
+            margin-right: -20px;
+            .planBox__item {
+                width: calc(33% - 20px);
+                @media #{$mqDesktop}{
+                    width: calc(50% - 20px);
+                }
+                @media #{$mqMobile2}{
+                    width: calc(100% - 20px);
+                }
+            }
+        }
+    }
+    &__item {
+        width: calc(25% - 20px);
+        margin-top: 20px;
+        margin-right: 20px;
+        background: $xxlGray3;
+        position: relative;
+        @media #{$mqDesktop}{
+            width: calc(50% - 20px);
+        }
+        @media #{$mqMobile2}{
+            width: calc(100% - 20px);
+        }
+        &__header {
+            padding: 15px 20px;
+            // background: $purple;
+            background: $lPurple;
+        }
+        &__body {
+            @include flex($ai:flex-start);
+            height: calc(100% - 54px);
+            padding: 20px 20px 160px;
+        }
+        &__buy {
+            @include flex($ai:flex-start);
+            width: 100%;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 40px;
+        }
+        &__left, &__right {
+            @include flex(flex-start);
+            width: 50%;
+            @media #{$mqMobile}{
+                width: 100%;
+            }
+        }
+        &--100 {
+            width: calc(100% - 20px);
+            .planBox__item__body {
+                @include flex($ai:stretch);
+                padding: 20px 20px 30px;
+            }
+        }        
+    }
+}
+
+// COMPARE BOX
+
+.compareBox {
+    @include flex($ai:flex-start,$fw:nowrap);
+    width: 100%;
+    &__left {
+        width: 220px;
+        min-height: 200px;
+        @media #{$mqMobile}{
+            width: 130px;
+        }
+        @media #{$mqXMobile}{
+            width: 110px;
+        }
+    }
+    &__right {
+        @include flex(flex-start,$fw:nowrap);
+        width: calc(100% - 220px);
+        overflow-x: auto;
+        @media #{$mqMobile}{
+            width: calc(100% - 130px);
+        }
+        @media #{$mqXMobile}{
+            width: calc(100% - 110px);
+        }
+    }
+    &__header {
+        width: 100%;
+        height: 270px;
+    }
+    &__body {
+        width: 100%;
+    }
+    &__tHead {
+        width: 100%;
+        height: auto;
+        background: $lPurple;
+        color: $white;
+    }
+    &__tCell {
+        @include flex(flex-start);
+        width: 100%;
+        padding: 5px 20px;
+        min-height: 40px;
+        border-bottom: 1px solid rgba($white,.6);
+        font-family: $light;
+        @include fontSize(14);
+        font-weight: normal;
+        line-height: 1;
+        @media #{$mqMobile}{
+            padding: 5px 10px;
+            @include fontSize(12);
+        }
+        .compareBox__item & {
+            @include flex;
+            border: solid $lPurple;
+            border-width: 0 0 1px 1px;
+            text-align: center;
+            &:first-of-type {
+                border-width: 1px 0 1px 1px;
+            }
+        }
+        .compareBox__item:last-of-type & {
+            border-width: 0 1px 1px 1px;
+            &:first-of-type {
+                border-width: 1px;
+            }
+        }
+        .compareBox__tHead &:last-of-type {
+            border-bottom: none;
+        }
+    }
+    &__item {
+        width: 33.33%;
+        min-width: 200px;
+        color: $shadow;
+        @media #{$mqMobile}{
+            min-width: 230px;
+        }
+        @media #{$mqXMobile}{
+            min-width: 170px;
+        }
+        &__header {
+            @include flex($ai:flex-start);
+            height: 270px;
+        }
+    }
+}
+
+// MINIFILTER
+
+.miniFilter {
+    @include flex;
+    position: relative;
+    @media #{$mqDesktop}{
+        &.mlA {
+            margin-left: 0 !important;
+        }
+    }
+    &__item {
+        // @include flex(space-between,$fw:nowrap);
+        @include flex(space-between);
+        width: 100%;
+        min-width: 260px;
+        padding: 10px;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 5px 5px rgba($lGray,.5);
+        margin: auto;
+        background: $white;
+        position: absolute;
+        // left: 0;
+        // right: 0;
+        top: 71px;
+        @include transition;
+        pointer-events: none;
+        opacity: 0;
+        z-index: +2;
+        @media #{$mqDesktop}{
+            top: 50px;
+        }
+        &.active {
+            pointer-events: all;
+            opacity: 1;
+        }
+        &__box {
+            // width: 48%;
+            width: 100%;
+        }
+    }
+}
+
+// ADVERTISING BOX
+.advertisingBox {
+    width: 100%;
+    background: $xxlGray;
+    border-radius: 5px;
+    line-height: 0;
+    overflow: hidden;
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+// OLD IMAGES
+.oldI {
+    @include flex(flex-start);
+    width: calc(100% + 10px);
+    margin-right: -10px;
+    &__title {
+        @include flex($ai:flex-start);
+        width: 100%;
+        font-family: $medium;
+        @include fontSize(20);
+        text-align: center;
+        color: $xlPurple;
+        @media #{$mqMobile}{
+            @include fontSize(18);
+        }
+    }
+    &__item {
+        width: 100%;
+        max-width: 110px;
+        height: 110px;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        line-height: 0;
+        position: relative;
+        overflow: hidden;
+        @include transition;
+        &::before {
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: rgba($black,.2);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: +1;
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &__close {
+            @include flex;
+            width: 16px;
+            height: 16px;
+            // background: red;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: +2;
+            &::before {
+                content: "×";
+                @include flex;
+                @include fontSize(30);
+                color: $white;
+                line-height: 1;
+            }
+        }
+    }
+}
+
+// PEOPLE BOX
+.peopleBox {
+    // @include flex(space-between);
+    @include flex($ai:flex-start);
+    width: calc(100% + 20px);
+    height: auto;
+    margin-right: -20px;
+    @media #{$mqTablet}{
+        @include flex;
+    }
+    &__item {
+        width: calc(25% - 20px);
+        // max-width: 250px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        @media #{$mqTablet}{
+            min-width: 250px;
+            width: calc(50% - 20px);
+        }
+        @media #{$mqMobile}{
+            // width: calc(46% - 20px);
+        }
+        @media #{$mqXMobile}{
+            width: 100%;
+        }
+        &__title {
+            @include flex($ai:flex-start);
+            width: 100%;
+            font-family: $medium;
+            @include fontSize(20);
+            text-align: center;
+            color: $xlPurple;
+            @media #{$mqMobile}{
+                @include fontSize(18);
+            }
+        }
+        &__mask {
+            @include flex;
+            // width: 100%;
+            // height: auto;
+            border-radius: 5px;
+            background: $white;
+            padding: 10px;
+
+            width: 170px;
+            height: 220px;
+            margin: auto;
+            @media #{$mqMobile}{
+                padding: 10px 0;
+            }
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        &__content {
+            padding: 10px 20px;
+        }
+        &__desc {
+            @include flex($ai:flex-start);
+            width: 100%;
+            font-family: $regular;
+            @include fontSize(15);
+            text-align: center;
+            color: $lGray;
+        }
+    }
+}
+
+// SHARE
+.share {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url("../images/icons/share.svg") no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+// BORDER BOTTOM
+.bb2lPurple {
+    border-bottom: 2px solid $lPurple;
+}
+
+.bbWhite {
+    border-bottom: 1px solid $white;
+}
+
+// STEPBOX
+.stepBox {
+    width: 100%;
+    &__nav {
+        width: 100%;
+        &__list {
+            @include flex(flex-start);
+            width: calc(100% + 3px);
+            margin-right: -3px;
+            padding-bottom: 7px;
+            position: relative;
+            @media #{$mqTablet}{
+                @include flex(flex-start,flex-start);
+                width: 100%;
+                max-height: 50px;
+                margin-bottom: 10px;
+                overflow: hidden;
+                &::before, &::after {
+                    content: "";
+                    display: block;
+                    width: 14px;
+                    height: 14px;
+                    background: url("../images/icons/arrow.svg") no-repeat center;
+                    background-size: contain;
+                    position: absolute;
+                    top: 18px;
+                    left: 10px;
+                    @include transition;
+                }
+                &::after {
+                    left: unset;
+                    right: 10px;
+                }
+                &.open {
+                    max-height: 1500px;
+                    &::before {
+                        transform: rotate(-180deg);
+                    }
+                    &::after {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+        &__indicator {
+            width: 0;
+            height: 4px;
+            background: $lPurple;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            @include transition;
+            @media #{$mqTablet}{
+                display: none;
+            }
+        }
+        &__item {
+            @include flex($d:inline-flex);
+            width: calc(16.66% - 3px);
+            min-height: 50px;
+            padding: 8px 15px;
+            margin-right: 3px;
+            border: none;
+	        border-radius: 5px;
+            background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) left center;
+            background-size: 200% auto;
+            text-align: center;
+            color: $white;
+            line-height: 1;
+            cursor: pointer;
+            @include transition;
+            @media #{$hover}{
+                &:hover {
+                    background: linear-gradient(to right, $dPurple 0%, $purple 51%, $lPurple 100%) right center;
+                    background-size: 200% auto;
+                }
+            }
+            &.active {
+                background-position: right center;
+            }
+            @media #{$mqTablet}{
+                order: 1;
+                width: 100%;
+                padding-left: 30px;
+                padding-right: 30px;
+                margin-right: 0;
+                margin-bottom: 5px;
+                &.active {
+                    order: 0;
+                }
+            }
+        }
+    }
+    &__container {
+        @include flex;
+        width: 100%;
+    }
+    &__content {
+        display: none;
+        width: 100%;
+        padding: 15px 20px 20px;
+        background: $xxlGray;
+        &.active {
+            @include flex(flex-start,stretch);
+        }
+        &__box {
+            @include flex(flex-start,flex-start);
+            width: 50%;
+            padding-top: 10px;
+            @media #{$mqMobile}{
+                width: 100%;
+            }
+        }
+    }
+    &--7 {
+        .stepBox__nav__item {
+            width: calc(14.28% - 3px);
+            @media #{$mqTablet}{
+                width: 100%;
+            }
+        }
+    }
+}
+
+// PACK BOX
+.packBox {
+    @include flex;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $gray;
+    position: relative;
+    &__close {
+        display: block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        &::before {
+			@include flex;
+			content: "×";
+			width: 100%;
+			height: 100%;
+            @include fontSize(40);
+            z-index: +1;
+		}
+    }
+    &:first-of-type {
+        .packBox__close {
+            pointer-events: none;
+            opacity: 0;
+        }
+    }
+    &:nth-of-type(n+2) {
+        margin-top: 40px;
+    }
+    &:last-of-type {
+        border-bottom: none;
+    }
+}
+
+// DROPZONE
+.dropzone {
+    @include flex;
+    min-height: 200px;
+    max-height: 710px;
+    padding: 20px;
+    border: 2px solid $lPurple;
+    background: transparent;
+    overflow: hidden;
+    align-content: flex-start;
+    @media #{$hover}{
+        &:hover {
+            .dropzone__info .btn {
+                border-color: $lPurple;
+                background: transparent;
+                color: $lPurple;
+            }
+        }
+	}
+    &__info {
+        @include flex;
+        width: 100%;
+        pointer-events: none;
+    }
+    &__input {
+        max-width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    &__btn {
+        cursor: pointer;
+    }
+    .dz-message {
+        display: none;
+    }
+    .dz-preview {
+        width: 100%;
+        max-width: 80px;
+        // margin: 8px 8px 0;
+        margin: 8px 8px auto;
+        text-align: center;
+    }
+    .dz-filename, .dz-size {
+        @include fontSize(13);
+        color: $lGray;
+    }
+    .dz-filename span, .dz-filename span[data-dz-name] {
+        display: inline-block;
+        width: 100%;
+        word-break: break-all;
+        overflow: hidden;
+    }
+    .dz-preview.dz-image-preview {
+        background: transparent;
+    }
+    .dz-progress, .dz-error-message, .dz-success-mark, .dz-error-mark {
+        display: none;
+    }
+    .dz-remove {
+        display: inline-flex;
+        width: 20px;
+        height: 20px;
+        margin: auto;
+        color: transparent;
+        position: relative;
+        overflow: hidden;
+        &::before {
+            display: inline-block;
+            content: "×";
+            width: 100%;
+            height: 100%;
+            @include fontSize(25);
+            line-height: 23px;
+            text-align: center;
+            color: $lPurple;
+            position: absolute;
+        }
+    }
+}
+
+// DATEPICKER
+.datepicker {
+    // width: 100%;
+    // max-width: 400px;
+    width: 100%;
+    max-width: 300px;
+    border-color: $xxlGray !important;
+    margin-left: auto;
+    margin-right: auto;
+    @media #{$mqXMobile}{
+        max-width: 240px;
+    }
+    &, & * {
+        font-family: $light !important;
+    }
+    .datepicker--day-name {
+        color: $purple;
+    }
+    .datepicker--cell-day {
+        // width: 40px;
+        height: 40px;
+        @include transition;
+        @media #{$mqXMobile}{
+            width: 33px;
+            height: 33px;
+        }
+        &.-current- {
+            color: $lPurple;
+            &.-selected- {
+                color: $white;
+            }
+        }
+        &.-selected- {
+            background: $lPurple;
+            border-radius: 50%;
+            @media #{$hover}{
+                &:hover {
+                    background: $lPurple;
+                    border-radius: 50%;
+                }
+            }
+            
+        }
+        @media #{$hover}{
+            &:hover {
+                background: rgba($xxlGray,.7);
+            }
+        }
+    }
+    .datepicker--day-name.-weekend- {
+        // width: 40px;
+    }
+    .datepicker--nav-action path {
+        stroke: $purple;
+    }
+}
+
+/* GALLERY */
+.lb-outerContainer {
+    order: 1 !important;
+}
+.lb-dataContainer {
+    order: 0 !important;
+}
+
+/* ASPECT RATIO */
+.ar {
+    @include aspectRatio(16,9);
+}
+
+/* LIGHTBOX */
+.lb-loader {
+    .lb-cancel {
+        background: transparent;
+        border: 3px solid $white;
+        border-radius: 50%;
+        animation: pulsate 1s ease-out;
+        animation-iteration-count: infinite;
+    }
+}
+
+.lb-container {
+    position: relative;
+    overflow: hidden;
+    @extend %watermark;
+    .lb-pImage {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        object-fit: contain;
+    }
+    .lb-image  {
+        pointer-events: none;
+    }
+}
+
+
+
+/* CUBICLES BOX */
+.cubiclesBox {
+    @include flex($ai:stretch,$fw:nowrap,$d:inline-flex);
+    // width: 100%;
+    width: auto;
+    border: solid $lPurple;
+    border-width: 0 1px;
+    // border-radius: 5px;
+    @media #{$mqMobile}{
+        @include flex;
+        border: none;
+    }
+    &__item {
+        // width: 100%;
+        width: auto;
+        padding: 10px 30px;
+        border-right: 1px solid $lPurple;
+        &:last-of-type {
+            border-right: 0;
+        }
+        @media #{$mqTablet}{
+            padding: 10px 20px;
+        }
+        &__icon {
+            @include flex($d:inline-flex);
+            width: 30px;
+            height: 26px;
+            margin-right: 5px;
+            object-fit: contain;
+            object-position: center;
+            position: relative;
+            bottom: -3px;
+            .cubiclesBox__item:nth-of-type(2) &, .cubiclesBox__item:nth-of-type(4) & {
+                bottom: -5px;
+            }
+        }
+        @media #{$mqMobile}{
+            width: 50%;
+            border: none;
+            // &:nth-of-type(n+3) {
+            //     border-top: 1px solid $lPurple;
+            // }
+            // &:nth-of-type(odd) {
+            //     border-right: 1px solid $lPurple;
+            // }
+            // &:nth-of-type(even) {
+            //     border-right: 0;
+            // }
+        }
+        @media #{$mqXMobile} {
+            width: 100%;
+            // &:nth-of-type(n) {
+            //     border-top: 1px solid $lPurple;
+            //     border-right: 0;
+            // }
+            // &:first-of-type {
+            //     border: 0;
+            // }
+        }
+    }
+}
+
+.textReset {
+    p {
+        &:not(:last-of-type){
+            margin-bottom: 20px;
+        }
+    }
+}
+
+// GOOGLE MAPS LINE
+.pac-container {
+    display: none;
+}
+
+/* MODAL */
+
+.modal--PN {
+	@include flex;
+	// display: none !important;
+	width: 100vw;
+	height: 100vh;
+	background: $bgModal;
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include transition;
+	z-index: 2000;
+	&__container {
+		@include flex;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		min-height: auto;
+		max-height: auto;
+		// border-radius: 10px;
+		padding: 0;
+		@include fontSize(15);
+		text-align: center;
+		background: $white;
+		position: relative;
+	}
+	&__content {
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        position: relative;
+        padding-bottom: 56.5%;
+        video{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+	}
+	&__title {
+		width: 100%;
+	}
+	&__close {
+		@include flex;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		cursor: pointer;
+		&::before {
+			@include flex;
+			content: "×";
+			width: 100%;
+			height: 100%;
+			@include fontSize(40);
+		}
+	}
+	&--playV {
+		.modal--PN__container {
+			width: 98%;
+			max-width: 700px;
+			min-height: initial;
+			max-height: initial;			
+		}
+		.modal--PN__content {
+			width: 100%;
+			height: auto;
+			@include aspectRatio(16,9);
+		}
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.g-recaptcha {
+		&, div, iframe {
+			width: 100% !important;
+		}
+	}
+	&--logIn, &--info {
+		.modal--PN__container {
+			@include flex($ai:flex-start);
+			width: calc(100% - 40px);
+			min-height: 250px;
+			height: auto;
+			max-height: calc(100vh - 40px);
+			padding: 40px 20px 20px 20px;
+			overflow-y: auto;
+		}
+		.modal--PN__content {
+			height: auto;
+			@media #{$mqXMobile}{
+				width: 100%;
+				overflow: hidden;
+			}
+		}
+		.modal--PN__box {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+		// @media #{$mqXMobile}{
+		// 	@media #{$safari}{
+		// 		.modal--PN__content {
+		// 			overflow: initial;
+		// 		}
+		// 	}
+		// }
+		@media #{$mqXMobile}{
+			@media #{$safari2}{
+				.modal--PN__content {
+					width: 100%;
+					overflow: hidden;
+				}
+			}
+		}
+	}
+	&--logPublish {
+		.modal--PN__container {
+			@include flex($ai:flex-start);
+			width: calc(100% - 40px);
+			min-height: 250px;
+			padding: 20px;
+			height: auto;
+			max-height: calc(100vh - 40px);
+			overflow-y: auto;
+		}
+		.modal--PN__content {
+			@include flex;
+			width: 100%;
+			height: auto;
+		}
+		.modal--PN__section {
+			width: 100%;
+		}
+		// @media #{$mqXMobile}{
+			// 	@media #{$safari}{
+		// 		.modal--PN__content {
+			// 			overflow: initial;
+		// 		}
+		// 	}
+		// }
+		@media #{$mqXMobile}{
+			@media #{$safari2}{
+				.modal--PN__content {
+					overflow: initial;
+				}
+			}
+		}
+	}
+	&--share, &--little {
+		.modal--PN__container {
+			width: calc(100% - 40px);
+			min-height: 120px;
+			max-width: 400px;
+			padding-bottom: 30px;
+		}
+		.modal--PN__content {
+			@include flex;
+			height: auto;
+		}
+	}
+	&--empty{
+		.modal--PN__container {
+			@include flex($ai:flex-start);
+			width: calc(100% - 20px);
+			max-width: 900px;
+			height: auto;
+			max-height: calc(100vh - 40px);
+			padding: 20px;
+			overflow-y: auto;
+		}
+		.modal--PN__content {
+			@include flex($ai:flex-start);
+			height: auto;
+		}
+		.modal--PN__mini {
+			width: 50%;
+			padding: 0 10px;
+			@media #{$mqMobile}{
+				width: 100%;
+				padding: 0;
+			}
+		}
+	}
+}
+.modal--PN-footer{
+	width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    background: white;
+    transition: all .5s ease;
+    @media #{$mqXMobile}{
+        flex-wrap: nowrap;
+    }
+}
+
+// SAFARI SUPPORT
+@media not all and (min-resolution:.001dpcm) { 
+	.modal--PN.hide {
+		z-index: 1000;
+	}
+}
