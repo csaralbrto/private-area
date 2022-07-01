@@ -60,11 +60,6 @@ Go to the source of the project and run the following command
 $ npm run watch
 
 ```
-Accesos
-----
-```sh
-
-```
 License
 ----
 
